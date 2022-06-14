@@ -21,6 +21,7 @@ const Header = () => {
           <NavLink href="/kids">Kids</NavLink>
           <NavLink href="/collections">Collections</NavLink>
         </Nav>
+        <Side />
       </MainHeader>
     </header>
   );
@@ -38,8 +39,11 @@ const MainHeader = styled.div`
 const Nav = styled.nav`
   display: flex;
   gap: 48px;
-  margin: 0 auto;
 `;
+
+const Side = styled.div`
+  flex: 1;
+`
 
 const NavLink = styled.a`
   font-size: 1.125rem;

@@ -29,12 +29,12 @@ const ShoeCard = ({
     ? 'on-sale'
     : isNewShoe(releaseDate)
       ? 'new-release'
-      : 'default'
+      : 'default';
 
   return (
     <Link href={`/shoe/${slug}`}>
       <Wrapper>
-        <ImageWrapper>
+        <ImageWrapper variant={variant}>
           <Image alt="" src={imageSrc} />
         </ImageWrapper>
         <Spacer size={12} />
@@ -48,28 +48,54 @@ const ShoeCard = ({
       </Wrapper>
     </Link>
   );
-};
+}
+
 
 const Link = styled.a`
   text-decoration: none;
   color: inherit;
+
+  flex-basis: 340px;
+  flex-grow: 1;
 `;
 
-const Wrapper = styled.article``;
+
+const Wrapper = styled.article`
+
+`;
 
 const ImageWrapper = styled.div`
   position: relative;
+
+  &::before {
+    position: absolute;
+    display: ${p => p.variant === "default" ? "none" : ""};
+    top: 12px;
+    right: -4px;
+    background-color: ${p => p.variant === "on-sale" ? COLORS.primary : COLORS.secondary};
+    color: ${COLORS.white};
+    font-family: "Raleway", sans-serif;
+    content: '${p => p.variant === "on-sale" ? "Sale" : p.variant === "new-release" ? "Just Released" : ""}';
+    padding: 9px 11px 7px 9px ;
+    border-radius: 2px;
+  }
 `;
 
-const Image = styled.img``;
+const Image = styled.img`
+  display: block;
+  width: 100%;
+  border-radius: 16px 16px 4px 4px;
+`;
 
 const Row = styled.div`
   font-size: 1rem;
+  display: flex;
 `;
 
 const Name = styled.h3`
   font-weight: ${WEIGHTS.medium};
   color: ${COLORS.gray[900]};
+  margin-right: auto;
 `;
 
 const Price = styled.span``;
